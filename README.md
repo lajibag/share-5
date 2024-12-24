@@ -1,4 +1,4 @@
-1.	配置华为开源的openEuler镜像源
+1.	<h3>配置华为开源的openEuler镜像源</h3>
 ```
 Wget -0 /etc/yum.repos.d/openEulerOS.repo https://mirrors.huaweicloud.com/repository/conf/openeuler_x86_64.repo
 ```
