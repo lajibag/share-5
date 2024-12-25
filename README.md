@@ -137,3 +137,84 @@ tail log.smbd -5
 ```
 
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%878.png)
+
+
+<h2>任务二：git与github操作</h2>
+
+<h3>一、安装git与基础配置</h3>
+<h4>1).访问如下镜像源网站可以快速下载git</h4>
+```
+https://registry.npmmirror.com/binary.html?path=git-for-windows/
+```
+<h4>2).安装完成后打开git-bash.ext程序，配置环境</h4>
+```
+git config --global user.name "your name"
+git config --global user.email "your email"
+```
+
+<h3>二、创建本地项目仓库与分支</h3>
+<h4>1).创建本地仓库</h4>
+在本地文件系统中，选择一个合适的目录，通过终端进入该目录。在终端中执行初始化仓库命令：
+```
+git init
+```
+<h4>2).建立分支</h4>
+在终端中输入如下代码创建一个名为”dev”的分支，并且切换到该分支
+```
+git checkout -b dev
+```
+
+<h3>三、项目开发中的操作</h3>
+
+<h4>1).提交项目</h4>
+将需要提交的文件提交到暂存区，使用如下命令。
+```
+git add samba "your file"
+```
+编写有意义的提交信息描述本次所作的更改，使用如下命令。
+```
+git commit -m "your description"
+```
+<h4>2).分支管理</h4>
+创建分支：
+```
+git branch master
+```
+切换分支：
+```
+git checkout master
+```
+
+合并分支：
+```
+git merge dev
+```
+<h4>3).查看日志以及回溯</h4>
+查看
+```
+git log  
+git log --oneline
+```
+回溯
+```
+git reset --hard <commit_hash>
+```
+
+<h3>四、将项目开源到github</h3>
+<h4>在github上创建远程仓库</h4>
+图片12
+
+<h4>在本地项目仓库终端执行</h4>
+```
+ git remote add origin <your_github_repository_url>
+```
+这里的 <your_github_repository_url> 是刚在 GitHub 上创建的仓库的 URL，通常是 HTTPS 。
+
+<h4>推送本地文件到Github</h4>
+```
+git push -u origin master
+```
+图片3
+
+
+
