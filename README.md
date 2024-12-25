@@ -15,7 +15,7 @@ yum makecache
 ```
 dnf -y install samba samba-common samba-client
 ```
-3.	启动samba，设置成系统启动时自动启动
+<h3>3.启动samba，设置成系统启动时自动启动</h3>
 ```
 Systemctl start smb; systemctl enable smb
 ```
@@ -23,7 +23,7 @@ Systemctl start smb; systemctl enable smb
 ```
 netstat -lantp | grep 139
 ```
-4.	创建samba所用到的两个目录
+创建samba所用到的两个目录
 ```
 mkdir /var/share /var/smb
 ```
@@ -55,7 +55,7 @@ systemctl restart smb
 ```
 systemctl status smb
 ```
-5.	将smb目录添加到smb用户以及群组的权限中
+将smb目录添加到smb用户以及群组的权限中
 ```
 chown smb:smb /var/smb
 ```
@@ -85,7 +85,7 @@ systemctl restart smb
 ```
 systemctl status smb
 ```
-6.	编写脚本实现对samba的简单运维
+编写脚本实现对samba的简单运维
 创建并编辑脚本文件
 ```
 vim /root/backup.sh
