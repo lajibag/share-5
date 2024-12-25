@@ -20,7 +20,9 @@ yum makecache
 ```
 dnf -y install samba samba-common samba-client
 ```
+
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%871.png)
+
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%872.png)
 <h3>3.启动samba，设置成系统启动时自动启动</h3>
 
@@ -56,9 +58,13 @@ vim /etc/samba/smb.conf
 ```
 
 在global下的security = user后面添加一行代码使其可以匿名登录
+
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%873.png)
+
 配置share目录权限
+
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%874.png)
+
 重启samba服务器并查看samba的状态
 ```
 systemctl restart smb
@@ -75,19 +81,24 @@ vim /etc/samba/smb.conf
 ```
 
 在share下面添加smb相关配置
+
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%875.png)
+
 
 重启samba服务器并查看samba的状态
 ```
 systemctl restart smb
 systemctl status smb
 ```
+
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%876.png)
+
 <h3>5.编写脚本实现对samba的简单运维</h3>
 创建并编辑脚本文件
 ```
 vim /root/backup.sh
 ```
+
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%877.png)
 
 为其添加可执行权限
@@ -124,4 +135,5 @@ ls /var/log | grep samba
 cd /var/log/samba/
 tail log.smbd -5
 ```
+
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%878.png)
