@@ -3,9 +3,13 @@
 
 ```
 Wget -0 /etc/yum.repos.d/openEulerOS.repo https://mirrors.huaweicloud.com/repository/conf/openeuler_x86_64.repo
+```
 #清理 yum 的缓存:
+```
 yum clean all
+```
 #更新 yum 的缓存:
+```
 yum makecache
 ```
 
@@ -16,53 +20,66 @@ dnf -y install samba samba-common samba-client
 ```
 
 <h3>3.启动samba，设置成系统启动时自动启动</h3>
+
 ```
 Systemctl start smb; systemctl enable smb
 ```
+
 观察139端口是否启动：
 ```
 netstat -lantp | grep 139
 ```
+
 创建samba所用到的两个目录
 ```
 mkdir /var/share /var/smb
 ```
+
 修改这两个文件的权限
 ```
 chmod 777 /var/share /var/smb
 ```
+
 创建smb用户
 ```
 useradd -s /sbin/nologin -M smb
 ```
+
 设置用户密码
 ```
 smbpasswd -a smb
 ```
+
 修改etc/samba中的samba文件
 ```
 vim /etc/samba/smb.conf
 ```
+
 在global下的security = user后面添加一行代码使其可以匿名登录
 ```
 map to guest =Bad User
 ```
+
 重启samba服务器
 ```
 systemctl restart smb
 ```
+
 查看samba的状态
 ```
 systemctl status smb
 ```
+
 将smb目录添加到smb用户以及群组的权限中
 ```
 chown smb:smb /var/smb
 ```
+
 再次编辑配置文件
 ```
 vim /etc/samba/smb.conf
 ```
+
 在share下面添加smb相关配置
 ```
 [smb]
@@ -77,14 +94,17 @@ vim /etc/samba/smb.conf
         directory mask = 0777
 
 ```
+
 重启samba服务器
 ```
 systemctl restart smb
 ```
+
 查看samba的状态
 ```
 systemctl status smb
 ```
+
 编写脚本实现对samba的简单运维
 创建并编辑脚本文件
 ```
@@ -103,23 +123,27 @@ find /var/smb/ -mtime +30 -name "*.tar.gz" -exec rm -rf {} \;
 ```
 chmod +x /root/backup.sh
 ```
+
 运行脚本
 ```
 sh /root/backup.sh
 ```
+
 检测是否打包完成
 ```
 ls -l /var/smb
 ```
+
 设置定期的周期性任务
 ```
 crontab -e
 ```
+
 输入
 ```
 0 22 * * * sh  /root/backup.sh  //每天执行一次backup.sh脚本
 ```
-7.	查看samba日志
+查看samba日志
 ```
 ls /var/log | grep samba
 ```
