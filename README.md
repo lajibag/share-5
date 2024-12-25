@@ -1,4 +1,6 @@
 <h1>第五组：季亚辉 孙玉洁 周奥 耿浩文</h1>
+<h2>任务一：samba文件共享服务器</h2>
+
 <h3>1.配置华为开源的openEuler镜像源</h3>
 
 ```
@@ -30,7 +32,7 @@ Systemctl start smb; systemctl enable smb
 ```
 netstat -lantp | grep 139
 ```
-
+<h3>3.创建用户环境</h3>
 创建samba所用到的两个目录
 ```
 mkdir /var/share /var/smb
@@ -40,17 +42,14 @@ mkdir /var/share /var/smb
 ```
 chmod 777 /var/share /var/smb
 ```
-
 创建smb用户
 ```
 useradd -s /sbin/nologin -M smb
 ```
-
 设置用户密码
 ```
 smbpasswd -a smb
 ```
-
 修改etc/samba中的samba文件
 ```
 vim /etc/samba/smb.conf
@@ -58,24 +57,22 @@ vim /etc/samba/smb.conf
 
 在global下的security = user后面添加一行代码使其可以匿名登录
 ```
-map to guest =Bad User
+图片3
 ```
-
-重启samba服务器
+配置share目录权限
+```
+图片4
+```
+重启samba服务器并查看samba的状态
 ```
 systemctl restart smb
-```
-
-查看samba的状态
-```
 systemctl status smb
 ```
-
+<h3>4.实现共享文件</h3>
 将smb目录添加到smb用户以及群组的权限中
 ```
 chown smb:smb /var/smb
 ```
-
 再次编辑配置文件
 ```
 vim /etc/samba/smb.conf
@@ -83,41 +80,23 @@ vim /etc/samba/smb.conf
 
 在share下面添加smb相关配置
 ```
-[smb]
-        comment = smb
-        path = /var/smb
-        write list = smb
-        browseable = yes
-        writeable = yes
-        read list = smb
-        valid users = smb
-        create mask = 0777
-        directory mask = 0777
-
+图片5
 ```
 
-重启samba服务器
+重启samba服务器并查看samba的状态
 ```
 systemctl restart smb
-```
-
-查看samba的状态
-```
 systemctl status smb
 ```
+图片6
 
-编写脚本实现对samba的简单运维
+<h3>5.编写脚本实现对samba的简单运维</h3>
 创建并编辑脚本文件
 ```
 vim /root/backup.sh
 ```
 ```
-#! /bin/sh
-mkdir /var/backup    //用于存放备份文件
-cp -r /var/share/ /var/backup/  //复制共享目录
-tar -zcPvf /var/smb/backup$(date +%Y%m%d).tar.gz /var/backup  //压缩备份文件，并添加当前日期名
-rm -rf /var/backup/     //删除旧备份文件
-find /var/smb/ -mtime +30 -name "*.tar.gz" -exec rm -rf {} \;
+图片7
 ```
 
 为其添加可执行权限
@@ -144,7 +123,7 @@ crontab -e
 ```
 0 22 * * * sh  /root/backup.sh  //每天执行一次backup.sh脚本
 ```
-查看samba日志
+<h3>6.查看samba日志</h3>
 ```
 ls /var/log | grep samba
 ```
@@ -154,3 +133,4 @@ ls /var/log | grep samba
 cd /var/log/samba/
 tail log.smbd -5
 ```
+图片8
