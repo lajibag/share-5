@@ -202,8 +202,9 @@ git reset --hard <commit_hash>
 
 <h3>四、将项目开源到github</h3>
 <h4>在github上创建远程仓库</h4>
-图片12
+![](https://github.com/lajibag/share-5/blob/master/picture/%E5%9B%BE%E7%89%871.png)
 
+![](https://github.com/lajibag/share-5/blob/master/picture/%E5%9B%BE%E7%89%872.png)
 <h4>在本地项目仓库终端执行</h4>
 ```
  git remote add origin <your_github_repository_url>
@@ -214,7 +215,7 @@ git reset --hard <commit_hash>
 ```
 git push -u origin master
 ```
-图片3
+![](https://github.com/lajibag/share-5/blob/master/picture/%E5%9B%BE%E7%89%873.png)
 
 
 
