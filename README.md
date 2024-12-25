@@ -19,6 +19,7 @@ yum makecache
 dnf -y install samba samba-common samba-client
 ```
 ![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%871.png)
+![](https://github.com/lajibag/share-5/blob/master/%E5%9B%BE%E7%89%872.png)
 <h3>3.启动samba，设置成系统启动时自动启动</h3>
 
 ```
