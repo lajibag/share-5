@@ -1,20 +1,20 @@
 <h1>第五组：季亚辉 孙玉洁 周奥 耿浩文</h1>
 <h3>1.配置华为开源的openEuler镜像源</h3>
+
 ```
 Wget -0 /etc/yum.repos.d/openEulerOS.repo https://mirrors.huaweicloud.com/repository/conf/openeuler_x86_64.repo
-```
-清理 yum 的缓存:
-```
+#清理 yum 的缓存:
 yum clean all
-```
-更新 yum 的缓存:
-```
+#更新 yum 的缓存:
 yum makecache
 ```
+
 <h3>2.安装samba，samba公共组件和samba客户端</h3>
+
 ```
 dnf -y install samba samba-common samba-client
 ```
+
 <h3>3.启动samba，设置成系统启动时自动启动</h3>
 ```
 Systemctl start smb; systemctl enable smb
